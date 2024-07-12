@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .carousel {
+      width: 300px;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+      border: solid black 5px;
+    }
+
+    .carousel-images img {
+      width: 300px;
+      height: 300px;
+    }
+
+
+    .previous, .next {
+      position: absolute;
+      top: 50%;
+      background-color: light grey;
+      color: black;
+      padding: 10px;
+      font-size: 20px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+
+    .previous {
+      left: 0;
+    }
+
+    .next {
+      right: 0;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class= "carousel" >
+    <div class = "carousel-images">
+      <img src = "cat.jpeg">
+      <img src = "dog.webp">
+      <img src = "Tabby_cat.jpeg">
+    </div>
+
+    <div class = "carousel-descriptions">
+      <p>Name: Mike
+        Age: 4 months
+        Breed: Short Hair 
+      </p>
+
+      <p>Name: Bob 
+        Age: 5 months
+        Breed: Border Collie
+      </p>
+
+      <p>Name: Joe
+        Age: 1 year
+        Breed: Tabby
+      </p>  
+    </div>
+    
+    <button class = "previous" onclick = "change_image(-1)">&#10094;</button>
+    <button class = "next" onclick = "change_image(1)">&#10095;</button>
+  </div>
+
+  <script>
+    var index = 0;
+    var images = document.querySelectorAll('.carousel-images img');
+    var descriptions = document.querySelectorAll('.carousel-descriptions p');
+
+    function change_image(amount) {
+      index += amount;
+
+      if (index < 0) {
+        index = images.length - 1;
+      } else if (index > images.length - 1) {
+        index = 0; 
+      } 
+
+      for (var i = 0; i < images.length; i++) {
+        if (i == index) {
+          images[i].style.display = "block";
+          descriptions[i].style.display = "block";
+        } else { 
+          images[i].style.display = "none";
+          descriptions[i].style.display = "none";
+        }
+      }
+    }
+
+    change_image (0);
+  </script>
+  
+</body>
+
+</html>
